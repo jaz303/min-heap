@@ -51,3 +51,15 @@ t('fuzz test', function(assert) {
   assert.ok(check.length === 0);
 
 });
+
+t('user defined scoring function', function(assert) {
+
+  var heap = new MinHeap(function(v) { return v.weight; });
+
+  heap.insert({weight: 1, id: "spaghetti"});
+  heap.insert({weight: 3, id: "courgettes"});
+
+  assert.ok(heap.remove().id === 'spaghetti');
+  assert.ok(heap.remove().id === 'courgettes');
+
+});
