@@ -3,6 +3,12 @@
   "version": "0.0.1",
   "description": "min-heap data structure",
   "main": "index.js",
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "devDependencies": {
+    "tape": "~0.2.2"
+  },
   "keywords": [
     "min-heap"
   ],
