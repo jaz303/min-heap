@@ -37,11 +37,35 @@ MinHeap.prototype = {
       
     var out = heap[0];
     
-    heap[0] = heap[--this.size];
+    this._bubble(0);
+    
+    return out;
+    
+  },
+
+  remove: function(item) {
+
+    var heap = this.heap;
+
+    for (var i = 0; i < this.size; ++i) {
+      if (heap[i] === item) {
+        this._bubble(i);
+        return true;
+      }
+    }
+
+    return false;
+
+  },
+
+  _bubble: function(ix) {
+
+    var heap  = this.heap,
+        cmp   = this.cmp;
+
+    heap[ix] = heap[--this.size];
     heap[this.size] = null;
-    
-    var ix = 0;
-    
+
     while (true) {
       
       var leftIx  = (ix<<1)+1,
@@ -66,9 +90,7 @@ MinHeap.prototype = {
       }
       
     }
-    
-    return out;
-    
+
   }
 
 };

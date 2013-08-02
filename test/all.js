@@ -8,6 +8,15 @@ function t(str, fn) {
   })
 }
 
+function testRemoval(heap, assert) {
+  var last = -Infinity;
+  while (heap.size) {
+    var head = heap.removeHead();
+    assert.ok(head >= last);
+    last = head;
+  }
+}
+
 t('initial .size', function(assert) {
   var heap = new MinHeap;
   assert.ok(heap.size === 0);
@@ -49,6 +58,52 @@ t('fuzz test', function(assert) {
   }
 
   assert.ok(check.length === 0);
+
+});
+
+t('remove item', function(assert) {
+
+  var heap = new MinHeap;
+
+  heap.insert(4);
+  heap.insert(1);
+  heap.insert(3);
+  heap.insert(5);
+
+  assert.ok(heap.remove(3));
+  assert.ok(heap.size === 3);
+
+  testRemoval(heap, assert);
+
+});
+
+t('remove biggest item', function(assert) {
+
+  var heap = new MinHeap;
+
+  heap.insert(1);
+  heap.insert(2);
+  heap.insert(3);
+  heap.insert(4);
+  heap.insert(5);
+
+  assert.ok(heap.remove(5));
+  assert.ok(heap.size === 4);
+
+  testRemoval(heap, assert);
+
+});
+
+t('remove non-existant item', function(assert) {
+
+  var heap = new MinHeap;
+
+  heap.insert(1);
+  heap.insert(2);
+  heap.insert(3);
+
+  assert.ok(!heap.remove(4));
+  assert.ok(heap.size === 3);
 
 });
 
