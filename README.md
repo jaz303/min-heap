@@ -15,7 +15,7 @@
     heap.removeHead(); // => 3
     heap.removeHead(); // => 5
 
-## User-defined scoring function
+## User-defined comparison function
 
     // Pass user-defined comparison function as first param
     var heap = new MinHeap(function(l,r) {
