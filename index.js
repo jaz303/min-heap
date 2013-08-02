@@ -95,4 +95,4 @@ MinHeap.prototype = {
 
 };
 
-exports.MinHeap = MinHeap;
+module.exports = MinHeap;

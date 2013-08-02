@@ -2,7 +2,7 @@
 
 ## API
 
-    var MinHeap = require('min-heap').MinHeap;
+    var MinHeap = require('min-heap');
 
     var heap = new MinHeap;
     heap.insert(5);
