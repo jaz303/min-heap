@@ -1,7 +1,7 @@
-function I(v) { return v; }
+function CMP(l,r) { return l-r; }
 
 function MinHeap(scoreFn) {
-  this.score = scoreFn || I;
+  this.cmp = scoreFn || CMP;
   this.heap = [];
   this.size = 0;
 }
@@ -10,15 +10,14 @@ MinHeap.prototype = {
   
   insert: function(item) {
     
-    var score = this.score(item),
-        heap  = this.heap,
+    var heap  = this.heap,
         ix    = this.size++;
         
     heap[ix] = item;
     
     var parent = (ix-1)>>1;
     
-    while ((ix > 0) && (this.score(heap[parent]) > score)) {
+    while ((ix > 0) && this.cmp(heap[parent], item) > 0) {
       var tmp = heap[parent];
       heap[parent] = heap[ix];
       heap[ix] = tmp;
@@ -28,10 +27,10 @@ MinHeap.prototype = {
         
   },
   
-  remove: function() {
+  removeHead: function() {
     
     var heap  = this.heap,
-        score = this.score;
+        cmp   = this.cmp;
     
     if (this.size === 0)
       return undefined;
@@ -49,11 +48,11 @@ MinHeap.prototype = {
           rightIx = (ix<<1)+2,
           minIx   = ix;
       
-      if (leftIx < this.size && score(heap[leftIx]) < score(heap[minIx])) {
+      if (leftIx < this.size && cmp(heap[leftIx], heap[minIx]) < 0) {
         minIx = leftIx;
       }
       
-      if (rightIx < this.size && score(heap[rightIx]) < score(heap[minIx])) {
+      if (rightIx < this.size && cmp(heap[rightIx], heap[minIx]) < 0) {
         minIx = rightIx;
       }
       

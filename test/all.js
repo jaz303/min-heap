@@ -34,7 +34,7 @@ t('fuzz test', function(assert) {
 
   check.sort();
   for (var i = 0; i < 20; ++i) {
-    assert.ok(heap.remove() === check.shift());
+    assert.ok(heap.removeHead() === check.shift());
   }
 
   for (var i = 0; i < 50; ++i) {
@@ -45,7 +45,7 @@ t('fuzz test', function(assert) {
 
   check.sort();
   while (heap.size) {
-    assert.ok(heap.remove() === check.shift());
+    assert.ok(heap.removeHead() === check.shift());
   }
 
   assert.ok(check.length === 0);
@@ -54,12 +54,12 @@ t('fuzz test', function(assert) {
 
 t('user defined scoring function', function(assert) {
 
-  var heap = new MinHeap(function(v) { return v.weight; });
+  var heap = new MinHeap(function(l,r) { return l.weight - r.weight; });
 
   heap.insert({weight: 1, id: "spaghetti"});
   heap.insert({weight: 3, id: "courgettes"});
 
-  assert.ok(heap.remove().id === 'spaghetti');
-  assert.ok(heap.remove().id === 'courgettes');
+  assert.ok(heap.removeHead().id === 'spaghetti');
+  assert.ok(heap.removeHead().id === 'courgettes');
 
 });
