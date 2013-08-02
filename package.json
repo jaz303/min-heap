@@ -1,6 +1,6 @@
 {
   "name": "min-heap",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "min-heap data structure",
   "main": "index.js",
   "scripts": {
