@@ -1,5 +1,5 @@
 var test = require('tape');
-var MinHeap = require('../').MinHeap;
+var MinHeap = require('../');
 
 function t(str, fn) {
   test(str, function(t) {
